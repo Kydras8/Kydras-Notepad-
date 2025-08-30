@@ -1,0 +1,17 @@
+name: Legendary Tree Fix
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  fix-tree:
+    runs-on: windows-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Run Legendary Fix Script
+        shell: pwsh
+        run: |
+          .\scripts\legendary-fix-tree.ps1
