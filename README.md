@@ -1,4 +1,5 @@
-# 📝 Legendary Notepad
+# 📝 kydras-notepad-plus
+
 
 > **A modular, high‑performance Notepad replacement** — built for speed, beauty, and total control.  
 > Designed by [Kyle Rasmussen](https://github.com/Kydras8) to be the **gold standard** for developer onboarding, plugin ecosystems, and branded automation.
@@ -24,7 +25,8 @@
 ```powershell
 # Clone the repo
 git clone https://github.com/Kydras8/legendary-notepad.git
-cd legendary-notepad
+cd kydras-notepad-plus
+
 
 # Install dependencies
 npm install
@@ -32,7 +34,8 @@ npm install
 # Bootstrap environment (hooks, helpers, branding)
 pwsh ./scripts/bootstrapper.ps1
 
-# Launch Legendary Notepad
+# Launch kydras-notepad-plus
+
 npm start
 🔄 Developer Workflow
 Legendary Notepad is built for speed and automation. Use the pushlegend command (from your PowerShell profile) to:
@@ -55,15 +58,6 @@ README.md        # This file
 📊 Live Status Dashboard
 The STATUS.md file is updated automatically after every commit. It includes:
 
-Branch badge
-
-Commit count badge
-
-Pending changes badge
-
-Build status badge (clickable — links to latest GitHub Actions run)
-
-Example:
 Credits
 Built with ❤️ by Kyle Rasmussen Master of modular scripting, automation, and aesthetic perfection.
 📜 License
