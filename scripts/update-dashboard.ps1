@@ -1,6 +1,6 @@
 <#
 .SYNOPSIS
-    Legendary Notepad Post-Commit Dashboard Generator
+    Kydras Notepad+ Post-Commit Dashboard Generator
     (Styled + Self-Test + Direct-to-Latest-Run Badge)
 .DESCRIPTION
     Generates a branded, badge-rich STATUS.md and updates it after every commit.
@@ -9,12 +9,12 @@
 
 # --- CONFIG ---
 $repoOwner = "Kydras8"          # GitHub username/org
-$repoName  = "legendary-notepad" # Repo name
+$repoName  = "Kydras Notepad+" # Repo name
 $branch    = git rev-parse --abbrev-ref HEAD
 $token     = $env:GITHUB_TOKEN  # Personal Access Token (needs 'repo' + 'actions:read')
 
 if (-not $token) {
-    Write-Host "[Legendary Notepad] ERROR: GITHUB_TOKEN not set in environment ❌" -ForegroundColor Red
+    Write-Host "[Kydras Notepad+] ERROR: GITHUB_TOKEN not set in environment ❌" -ForegroundColor Red
     exit 1
 }
 
@@ -32,7 +32,7 @@ Write-Host $banner -ForegroundColor Cyan
 # --- Gather Repo Info ---
 $repoRoot = git rev-parse --show-toplevel 2>$null
 if (-not $repoRoot) {
-    Write-Host "[Legendary Notepad] Not inside a Git repo ❌" -ForegroundColor Red
+    Write-Host "[Kydras Notepad+] Not inside a Git repo ❌" -ForegroundColor Red
     exit 1
 }
 Set-Location $repoRoot
@@ -45,7 +45,7 @@ $pending      = git status --porcelain | Measure-Object | Select-Object -ExpandP
 $testScript = Join-Path $repoRoot "scripts/self-test.ps1"
 $buildStatus = "unknown"
 if (Test-Path $testScript) {
-    Write-Host "[Legendary Notepad] Running self-test..." -ForegroundColor DarkCyan
+    Write-Host "[Kydras Notepad+] Running self-test..." -ForegroundColor DarkCyan
     try {
         & $testScript
         if ($LASTEXITCODE -eq 0) {
@@ -57,13 +57,13 @@ if (Test-Path $testScript) {
         $buildStatus = "error"
     }
 } else {
-    Write-Host "[Legendary Notepad] No self-test script found — skipping" -ForegroundColor DarkYellow
+    Write-Host "[Kydras Notepad+] No self-test script found — skipping" -ForegroundColor DarkYellow
     $buildStatus = "not_found"
 }
 
 # --- Get Latest Workflow Run URL ---
 $apiUrl = "https://api.github.com/repos/$repoOwner/$repoName/actions/runs?branch=$branch&per_page=1"
-$headers = @{ Authorization = "Bearer $token"; "User-Agent" = "Legendary-Notepad-Dashboard" }
+$headers = @{ Authorization = "Bearer $token"; "User-Agent" = "Kydras Notepad+-Dashboard" }
 try {
     $latestRun = Invoke-RestMethod -Uri $apiUrl -Headers $headers -Method Get
     if ($latestRun.workflow_runs.Count -gt 0) {
@@ -72,7 +72,7 @@ try {
         $latestRunUrl = "https://github.com/$repoOwner/$repoName/actions"
     }
 } catch {
-    Write-Host "[Legendary Notepad] Could not fetch latest run — defaulting to Actions tab" -ForegroundColor DarkYellow
+    Write-Host "[Kydras Notepad+] Could not fetch latest run — defaulting to Actions tab" -ForegroundColor DarkYellow
     $latestRunUrl = "https://github.com/$repoOwner/$repoName/actions"
 }
 
@@ -91,7 +91,7 @@ switch ($buildStatus) {
 
 # --- Build STATUS.md ---
 $dashboard = @"
-# 📝 Legendary Notepad — Status Dashboard
+# 📝 Kydras Notepad+ — Status Dashboard
 
 $badgeBranch $badgeCommits $badgePending $badgeBuild  
 
@@ -118,4 +118,4 @@ Write-Host "Latest Run URL:  $latestRunUrl" -ForegroundColor Yellow
 
 # --- Save to STATUS.md ---
 $dashboard | Set-Content (Join-Path $repoRoot "STATUS.md") -Encoding utf8NoBOM
-Write-Host "[Legendary Notepad] STATUS.md updated with direct run link ✅" -ForegroundColor Green
+Write-Host "[Kydras Notepad+] STATUS.md updated with direct run link ✅" -ForegroundColor Green
