@@ -1,11 +1,11 @@
 $OldNames = @(
-    "Legendary Notepad",
-    "legendary-notepad",
-    "Kydras-Notepad-",
-    "Kydras Notpade+"
+    "Kydras Notepad+",
+    "Kydras Notepad+",
+    "Kydras Notepad+",
+    "Kydras Notepad+"
 )
 $NewName = "Kydras Notepad+"
-$NewSlug = "kydras-notepad-plus"
+$NewSlug = "Kydras Notepad+plus"
 
 Write-Host "🔍 Searching and replacing old names with '$NewName' and slug '$NewSlug'..."
 foreach ($Old in $OldNames) {
@@ -15,11 +15,11 @@ foreach ($Old in $OldNames) {
     }
 }
 Write-Host "   Replacing repo slugs..."
-git grep -l "legendary-notepad" | ForEach-Object {
-    (Get-Content $_) -replace "legendary-notepad", $NewSlug | Set-Content $_
+git grep -l "Kydras Notepad+" | ForEach-Object {
+    (Get-Content $_) -replace "Kydras Notepad+", $NewSlug | Set-Content $_
 }
-git grep -l "Kydras-Notepad-" | ForEach-Object {
-    (Get-Content $_) -replace "Kydras-Notepad-", $NewSlug | Set-Content $_
+git grep -l "Kydras Notepad+" | ForEach-Object {
+    (Get-Content $_) -replace "Kydras Notepad+", $NewSlug | Set-Content $_
 }
 
 Write-Host "📦 Staging changes..."
