@@ -34,3 +34,39 @@ pwsh ./scripts/bootstrapper.ps1
 
 # Launch Legendary Notepad
 npm start
+🔄 Developer Workflow
+Legendary Notepad is built for speed and automation. Use the pushlegend command (from your PowerShell profile) to:
+
+Auto‑repair Git hooks (pre + post commit)
+
+Run self‑tests
+
+Update STATUS.md with live badges
+
+Commit & push in one shot
+
+powershell
+pushlegend "feat: add new plugin system"
+scripts/         # Bootstrapper, self-test, workflow guard, dashboard generator
+plugins/         # Modular plugin system
+.github/         # CI/CD workflows
+STATUS.md        # Auto-generated repo health dashboard
+README.md        # This file
+📊 Live Status Dashboard
+The STATUS.md file is updated automatically after every commit. It includes:
+
+Branch badge
+
+Commit count badge
+
+Pending changes badge
+
+Build status badge (clickable — links to latest GitHub Actions run)
+
+Example:
+Credits
+Built with ❤️ by Kyle Rasmussen Master of modular scripting, automation, and aesthetic perfection.
+📜 License
+MIT License — See LICENSE for details.
+
+
