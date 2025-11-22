@@ -1,3 +1,11 @@
+<!-- Kydras Repo Header -->
+<p align="center">
+  <strong>Kydras Systems Inc.</strong><br/>
+  <em>Nothing is off limits.</em>
+</p>
+
+---
+
 markdown
 # 📝 Kydras Notepad+
 
@@ -67,3 +75,4 @@ Built with ❤️ by Kyle Rasmussen Master of modular scripting, automation, and
 
 📜 License
 MIT License — See LICENSE for details.
+
